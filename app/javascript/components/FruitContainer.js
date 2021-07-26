@@ -86,7 +86,7 @@ class FruitContainer extends React.Component {
         <button onClick={() => this.showModal()} class="ui small primary basic button">Show modal</button>
         <FruitIndex fruits={this.state.fruits} handleDelete={this.handleDelete} handleUpdate={this.handleUpdate} />
         {/* <FruitNew handleFormSubmit = {this.handleFormSubmit} show={this.state.show} onClose={this.showModal} />        */}
-        <SemanticModal key='modal1' modalOpen={this.state.modalOpen} handleClose={() => { this.setState({ modalOpen: false })}} valueIntoModal={this.state.valueIntoModal} />
+        <SemanticModal key='modal1' onSubmit={this.props.handleFormSubmit} modalOpen={this.state.modalOpen} handleClose={() => { this.setState({ modalOpen: false })}} valueIntoModal={this.state.valueIntoModal} />
       </React.Fragment>
     );
   }

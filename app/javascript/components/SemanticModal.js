@@ -9,16 +9,33 @@ class SemanticModal extends React.Component {
   }
 
   render () {
+    let formFields = {};
     return (
       <React.Fragment>
-        <Modal open={this.props.modalOpen} size='small' closeOnEscape={true} closeOnRooNodeClick={true}>
-          <Header icon='browser' content='Confirm?' />
+        <Modal open={this.props.modalOpen} size='small' closeOnEscape={true} closeOnRootNodeClick={true}>
+          <Header content='New Fruit' />
           <Modal.Content image>
-            <h3>Please confirm</h3>
+            <form onSubmit={ (e) => {
+              this.props.handleFormSubmit(formFields.name.value, formFields.desc.value); 
+              e.target.reset();
+            }}>
+              <div class="field">
+                <label>Name</label>
+                <div class="seven wide field">
+                  <div class="ui input"><input type="text" ref={input => formFields.name = input} placeholder="Fruit name" /></div>
+                </div>
+              </div>
+              <div class="field">
+                <label>Description</label>
+                <div class="seven wide field">
+                <div class="ui input"><input type="text" ref={input => formFields.desc = input} placeholder="Fruit description" /></div>
+                </div>
+              </div>
+           </form>
           </Modal.Content>
           <Modal.Actions>
             <Button negative type='button' icon='remove' labelPosition='right' onClick={this.props.handleClose} content='Cancel' />
-            <Button positive type='button' icon='checkmark' labelPosition='right' onClick={this.confirmClick} content='Confirm' />
+            <Button positive type='button' icon='checkmark' labelPosition='right' onClick={this.handleFormSubmit} content='Save' />
           </Modal.Actions>
         </Modal>
       </React.Fragment>
